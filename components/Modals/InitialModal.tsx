@@ -85,7 +85,9 @@ const InitialModal = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Server Name</FormLabel>
+                    <div className="font-bold text-zinc-500 text-left uppercase text-xs dark:text-secondary/50">
+                      Server Name
+                    </div>
                     <FormControl>
                       <Input
                         {...field}
@@ -94,7 +96,7 @@ const InitialModal = () => {
                         className="bg-zinc-300/50 focus-visible:ring-0 text-black focus-visible:ring-offset-0 border-0"
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-left" />
                     <FormDescription>
                       By creating a server, you agree to our{" "}
                       <span className="text-blue-400 cursor-pointer">
