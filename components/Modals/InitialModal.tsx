@@ -1,6 +1,8 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 import React, { useEffect, useState } from "react";
 import {
@@ -35,6 +37,7 @@ const formSchema = z.object({
 
 const InitialModal = () => {
   const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,7 +51,14 @@ const InitialModal = () => {
   }, []);
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+    try {
+      await axios.post("/api/servers", data);
+      form.reset();
+      router.refresh();
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (!isMounted) return null;
@@ -111,6 +121,7 @@ const InitialModal = () => {
                 type="submit"
                 className="w-full text-white"
                 variant={"primary"}
+                disabled={form.formState.isSubmitting}
               >
                 Create Server
               </Button>
