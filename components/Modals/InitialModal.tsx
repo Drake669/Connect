@@ -22,6 +22,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
+import FileUpload from "@/components/FileUpload";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -64,7 +65,21 @@ const InitialModal = () => {
           </DialogDescription>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <div className="pt-10 flex justify-center">Image Upload</div>
+              <div className="pt-10 flex justify-center">
+                <FormField
+                  control={form.control}
+                  name="serverLogo"
+                  render={({ field }) => (
+                    <FormControl>
+                      <FileUpload
+                        endpoint={"serverLogo"}
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    </FormControl>
+                  )}
+                />
+              </div>
               <FormField
                 control={form.control}
                 name="name"
