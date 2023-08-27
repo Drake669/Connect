@@ -1,11 +1,18 @@
+"use client";
+
 import { Plus } from "lucide-react";
 import React from "react";
 import { ActionTooltip } from "@/components/ActionTooltip/Tooltip";
+import { useModal } from "@/hooks/UseModal";
 
 const NavigationAction = () => {
+  const { onOpen } = useModal();
+  const handleOpen = () => {
+    onOpen("createServer");
+  };
   return (
     <div>
-      <button className="group">
+      <button className="group" onClick={handleOpen}>
         <ActionTooltip
           text="Add a Server"
           element={

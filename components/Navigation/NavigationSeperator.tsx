@@ -5,7 +5,7 @@ const NavigationSeperator = () => {
   return (
     <Separator
       orientation="horizontal"
-      className="bg-[#36373c] mx-auto w-10 rounded-md"
+      className="dark:bg-[#36373c] mx-auto w-10 rounded-md"
     />
   );
 };

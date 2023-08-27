@@ -16,11 +16,18 @@ import { cn } from "@/lib/utils";
 const NavigationItem = ({ id, serverLogo, name }: NavigationItemProps) => {
   const router = useRouter();
   const params = useParams();
+
+  const handleRouting = () => {
+    router.push(`/servers/${id}`);
+  };
   return (
     <ActionTooltip
       text={name}
       element={
-        <button className="flex items-center group relative" onClick={() => {}}>
+        <button
+          className="flex items-center group relative mb-4"
+          onClick={handleRouting}
+        >
           <div
             className={cn(
               "absolute left-0 rounded-r-full transition-all w-[4px] bg-white",
