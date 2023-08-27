@@ -22,7 +22,6 @@ export const POST = async (req:Request) => {
                     create: [
                         {
                             name: "general",
-                            channelType: ChannelType.TEXT,
                             profileId: currentProfile.id,
                         }
                     ]

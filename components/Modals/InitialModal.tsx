@@ -24,7 +24,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
-import FileUpload from "@/components/FileUpload";
+import FileUpload from "@/components/FileUpload/FileUpload";
 
 const formSchema = z.object({
   name: z.string().min(1, {
