@@ -21,13 +21,19 @@ model Profile {
   channels       Channel[]
 }
 
+enum CanInvite {
+  EVERYONE
+  ADMIN
+  MODERATOR
+}
+
 model Server {
-  id         String  @id @default(uuid())
-  name       String  @unique
-  serverLogo String  @db.Text
-  inviteUrl  String  @db.Text
+  id         String    @id @default(uuid())
+  name       String    @unique
+  serverLogo String    @db.Text
+  canIvite   CanInvite @default(EVERYONE)
   profileId  String
-  profile    Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  profile    Profile   @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -46,6 +52,7 @@ enum MemberRoles {
 model Member {
   id          String      @id @default(uuid())
   memeberRole MemberRoles @default(GUEST)
+  inviteUrl   String      @unique
 
   profileId String
   profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)

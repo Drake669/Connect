@@ -1,7 +1,7 @@
 import { db } from "@/lib/db"
 import { profile } from "@/lib/profileId"
 import { generateRandomUUID } from "@/lib/randomUUIDGenerator"
-import { ChannelType, MemberRoles } from "@prisma/client"
+import {  MemberRoles } from "@prisma/client"
 import { NextResponse } from "next/server"
 
 export const POST = async (req:Request) => {
@@ -17,7 +17,6 @@ export const POST = async (req:Request) => {
                 name,
                 serverLogo,
                 profileId: currentProfile.id,
-                inviteUrl: generateRandomUUID(),
                 channels: {
                     create: [
                         {
@@ -31,6 +30,7 @@ export const POST = async (req:Request) => {
                         {
                             memeberRole: MemberRoles.ADMIN,
                             profileId: currentProfile.id,
+                            inviteUrl: generateRandomUUID(),
                         }
                     ]
                 }
